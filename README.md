@@ -24,6 +24,12 @@ Setting up nightly reboots using 'cron'
 - enter the following at the end of the document: 59 23 * * * sudo reboot
 	- read more about cron here: raspberrypi.org/documentation/linux/usage/cron.md 
 
+Rotate the PIs screen output to fit a vertical screen
+- Edit the confog.txt file
+	- Open file: sudo nano /boot/config.txt
+	- Add the following line at the bottom: display_rotate=1
+	- Exit and save: first (ctrl+x) then (shift+y)
+
 NB
 If the PI gets turned on by cutting the power it will start to give a prompting dialo box when
 running. Disable this the following way:
