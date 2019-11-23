@@ -30,6 +30,12 @@ Rotate the PIs screen output to fit a vertical screen
 	- Add the following line at the bottom: display_rotate=1
 	- Exit and save: first (ctrl+x) then (shift+y)
 
+Make the "date_grabber" run headless
+- Open terminal and run the following install
+	- sudo apt-get install xvfb libxrender1 libxtst6 libxi6
+- Read more about it here: https://github.com/processing/processing/wiki/Running-without-a-Display
+- NB: if this install doesn't work the codeline in the "door_sign" code executing the "date_grabber" needs to be altered back to running as normal. See the uncommented line just above the "xvfb-run" command execution, in the "functions.pde" file
+
 NB
 If the PI gets turned on by cutting the power it will start to give a prompting dialo box when
 running. Disable this the following way:
