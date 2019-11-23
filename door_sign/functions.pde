@@ -10,7 +10,7 @@ void runFunctions() {
   getFonts();
   responsiveSketch();
   
-  if (frameCount%600 == 0) {
+  if (frameCount%120 == 0) {
     //loadEventData();
     loadEventDataThisWeek();
     loadEventDataNextWeek();
@@ -21,14 +21,15 @@ void runFunctions() {
   drawTimeTable(headerNextWeekStartY, tableStartX, tableNextWeekStartY, "Next week");
   drawBottomInfo();
   
-  if (frameCount%600==300) {
+  if (frameCount%120==30) {
     //launch("/home/pi/sketchbook/date_grabber/application.linux-armv6hf/date_grabber");
     try {
 
       // print a message
       println("Executing date_grabber.pde");
       // create a process and execute date_grabber
-      Process process = Runtime.getRuntime().exec("processing-java --sketch=/home/pi/sketchbook/date_grabber --run");
+      //Process process = Runtime.getRuntime().exec("processing-java --sketch=/home/pi/sketchbook/date_grabber --run");
+      Process process = Runtime.getRuntime().exec("xvfb-run processing-java --sketch=/home/pi/sketchbook/date_grabber --run");
 
     } 
     catch (Exception ex) {
@@ -81,11 +82,11 @@ void responsiveSketch() {
 void drawBottomInfo(){
   noStroke();
   fill(c_primary);
-  rect(tableStartX, cell_h*35, cell_h, cell_h);
-  text("AIR LAB open", tableStartX+cell_w, cell_h*35+cell_h/2);
+  rect(tableStartX, cell_h*35+cell_h/2, cell_h, cell_h);
+  text("AIR LAB open", tableStartX+cell_w, cell_h*35+cell_h);
   fill(c_secondary);
-  rect(tableStartX, cell_h*36+cell_h/2, cell_h, cell_h);
-  text("AIR LAB booked", tableStartX+cell_w, cell_h*36+cell_h);
+  rect(tableStartX, cell_h*36+cell_h, cell_h, cell_h);
+  text("AIR LAB booked", tableStartX+cell_w, cell_h*36+cell_h*1.5);
   String links = "air@itu.dk | airlab.itu.dk | airlab.itu.dk/booking | facebook.com/airlabitu | instagram.com/air_lab_itu";
   text(links, width/2-textWidth(links)/2, cell_h*39);
   
