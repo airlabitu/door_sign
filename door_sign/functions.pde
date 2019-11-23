@@ -82,6 +82,7 @@ void responsiveSketch() {
 void drawBottomInfo(){
   noStroke();
   fill(c_primary);
+  textFont(Helvetica, textSize*1.3);
   rect(tableStartX, cell_h*35+cell_h/2, cell_h, cell_h);
   text("AIR LAB open", tableStartX+cell_w, cell_h*35+cell_h);
   fill(c_secondary);
@@ -200,9 +201,11 @@ void drawGrid() {
 
 
 void getFonts() {
-  Prime = createFont("Prime", 32);
-  Helvetica = createFont("Helvetica", 32);
-  RobotoMono =  createFont("Roboto Mono", 32);
+  
+  Prime = createFont("Prime-Regular.ttf", 32);
+  Helvetica = createFont("Helvetica.ttf", 32);
+  RobotoMono =  createFont("RobotoMono-Regular.ttf", 32);
+
 }
 
 
