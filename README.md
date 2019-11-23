@@ -7,9 +7,11 @@ Install processing by going to the terminal and typing this command:
 
 Launch Processing
 
-Download the project from the AIR LAB GitHub
+Download the project from the AIR LAB GitHub : https://github.com/airlabitu/door_sign
 
 Save the two folders (door_sign) and (date_grabber) in the Processing home folder: /home/pi/sketchbook
+
+Create two empty folders callsed "this_week" and "next_week" under "/Home/pi/Documents"
 
 Setup the autostart of the "door_sign.pde" program by typing the following command in a Terminal window:
 - sudo nano /etc/xdg/lxsession/LXDE-pi/autostart
