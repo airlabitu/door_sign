@@ -27,46 +27,28 @@ float cell_w, cell_h, headerThisWeekStartY, headerNextWeekStartY, tableStartX, t
 boolean showFrames, showGrid;
 
 void setup() {
-  //fullScreen();
-  size(900, 1000);
+  fullScreen();
+  //size(900, 1000);
   frameRate(1);
   smooth(4);
-  //println(frameCount%60);
   responsiveSketch();
   runFunctions();
-  //loadEventData();
-  //loadEventDataThisWeek();
-  //loadEventDataNextWeek();
+  loadEventDataThisWeek();
+  loadEventDataNextWeek();
 }
 
 void draw() {
   background(c_bg);
   runFunctions();
-  //println();
   for (int i = 0; i < eventsThisWeek.size(); i ++) {
-    //println("TW: " + i);
-    Event eventT = eventsThisWeek.get(i);
-    //if (eventT.eventAdded()) {
-      //println("added TW");
-      eventT.display();
-    //}
+    Event event = eventsThisWeek.get(i);
+    event.display();
   }
   
   for (int i = 0; i < eventsNextWeek.size(); i ++) {
-    //println("NW: " + i);
-    Event eventN = eventsNextWeek.get(i);
-    //if (eventN.eventAdded()) {
-      //println("added NW");
-      eventN.display();
-    //}
+    Event event = eventsNextWeek.get(i);
+    event.display();
+    
   }
   
-  /*
-  for (int i = 0; i < events.size(); i ++) {
-    Event event = events.get(i);
-    if (event.eventAdded()) {
-      event.display();
-    }
-  }
-  */
 }

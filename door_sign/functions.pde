@@ -10,7 +10,7 @@ void runFunctions() {
   getFonts();
   responsiveSketch();
   
-  if (frameCount%90 == 0) {
+  if (frameCount%600 == 0) {
     //loadEventData();
     loadEventDataThisWeek();
     loadEventDataNextWeek();
@@ -19,8 +19,9 @@ void runFunctions() {
   
   drawTimeTable(headerThisWeekStartY, tableStartX, tableThisWeekStartY, "This week");
   drawTimeTable(headerNextWeekStartY, tableStartX, tableNextWeekStartY, "Next week");
+  drawBottomInfo();
   
-  if (frameCount%90==45) {
+  if (frameCount%600==300) {
     //launch("/home/pi/sketchbook/date_grabber/application.linux-armv6hf/date_grabber");
     try {
 
@@ -50,13 +51,13 @@ void responsiveSketch() {
   
   //headerStartY = cell_h;
   headerThisWeekStartY = cell_h;
-  headerNextWeekStartY = cell_h*20;
+  headerNextWeekStartY = cell_h*18;
   //tableStartX = cell_w*2;
   //tableStartY = cell_h*6;
   
   tableStartX = cell_w*2;
   tableThisWeekStartY = cell_h*6;
-  tableNextWeekStartY = cell_h*25;
+  tableNextWeekStartY = cell_h*23;
 
   eventWidth = cell_w*2;
 
@@ -75,6 +76,20 @@ void responsiveSketch() {
     println("ERROR! choose 5, 7 or 14 days in calendar (search for variable name: daysInCalendar)");
     break;
   }
+}
+
+void drawBottomInfo(){
+  noStroke();
+  fill(c_primary);
+  rect(tableStartX, cell_h*35, cell_h, cell_h);
+  text("AIR LAB open", tableStartX+cell_w, cell_h*35+cell_h/2);
+  fill(c_secondary);
+  rect(tableStartX, cell_h*36+cell_h/2, cell_h, cell_h);
+  text("AIR LAB booked", tableStartX+cell_w, cell_h*36+cell_h);
+  String links = "air@itu.dk | airlab.itu.dk | airlab.itu.dk/booking | facebook.com/airlabitu | instagram.com/air_lab_itu";
+  text(links, width/2-textWidth(links)/2, cell_h*39);
+  
+  
 }
 
 int getDayIndex(String _day) {
@@ -133,7 +148,7 @@ void drawTimeTable(float headerY, float tableX, float tableY, String weekString)
   for (int i = 0; i < daysInCalendar; i++) {
 
     String dayFormatted = getDayInfo(i, "day").substring(0, 3).toLowerCase();
-    text(dayFormatted, tableX+cell_w+eventWidth*i*dayWidth, tableY-cell_h*1.5);
+    text(dayFormatted, tableX+cell_w/2+eventWidth*i*dayWidth, tableY-cell_h*1.5);
     String dateFormatted = getDayInfo(i, "date");
     String monthFormatted = getDayInfo(i, "month");
     if (dateFormatted.length() < 2) {
@@ -145,7 +160,7 @@ void drawTimeTable(float headerY, float tableX, float tableY, String weekString)
     if (daysInCalendar != 14) {
       dateFormatted = dateFormatted + "." + monthFormatted;
     }
-    text(dateFormatted, tableX+cell_w+eventWidth*i*dayWidth, tableY-cell_h);
+    text(dateFormatted, tableX+cell_w/2+eventWidth*i*dayWidth, tableY-cell_h);
   }
 }
 
