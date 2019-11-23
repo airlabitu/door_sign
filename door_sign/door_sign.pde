@@ -29,6 +29,7 @@ boolean showFrames, showGrid;
 void setup() {
   fullScreen();
   //size(900, 1000);
+  noCursor();
   frameRate(1);
   smooth(4);
   responsiveSketch();
