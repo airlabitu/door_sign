@@ -32,6 +32,8 @@ void setup() {
   noCursor();
   frameRate(1);
   smooth(4);
+  getColors();
+  getFonts();
   responsiveSketch();
   runFunctions();
   loadEventDataThisWeek();

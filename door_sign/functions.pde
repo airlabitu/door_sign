@@ -5,22 +5,22 @@ void runFunctions() {
   if (showGrid) {
     drawGrid();
   }
-  
-  getColors();
-  getFonts();
+
+  //getColors();
+  //getFonts();
   responsiveSketch();
-  
+
   if (frameCount%120 == 0) {
     //loadEventData();
     loadEventDataThisWeek();
     loadEventDataNextWeek();
   }
- 
-  
-  drawTimeTable(headerThisWeekStartY, tableStartX, tableThisWeekStartY, "This week");
-  drawTimeTable(headerNextWeekStartY, tableStartX, tableNextWeekStartY, "Next week");
+
+
+  drawTimeTable(headerThisWeekStartY, tableStartX, tableThisWeekStartY, "This week", 0); // this week
+  drawTimeTable(headerNextWeekStartY, tableStartX, tableNextWeekStartY, "Next week", 7); // next week
   drawBottomInfo();
-  
+
   if (frameCount%120==30) {
     //launch("/home/pi/sketchbook/date_grabber/application.linux-armv6hf/date_grabber");
     try {
@@ -30,7 +30,6 @@ void runFunctions() {
       // create a process and execute date_grabber
       //Process process = Runtime.getRuntime().exec("processing-java --sketch=/home/pi/sketchbook/date_grabber --run");
       Process process = Runtime.getRuntime().exec("xvfb-run processing-java --sketch=/home/pi/sketchbook/date_grabber --run");
-
     } 
     catch (Exception ex) {
       ex.printStackTrace();
@@ -49,13 +48,13 @@ void responsiveSketch() {
   cell_w = (float)width/aspectWidth;
   cell_h = (float)height/aspectHeight;
   textSize = cell_h/3;
-  
+
   //headerStartY = cell_h;
   headerThisWeekStartY = cell_h;
   headerNextWeekStartY = cell_h*18;
   //tableStartX = cell_w*2;
   //tableStartY = cell_h*6;
-  
+
   tableStartX = cell_w*2;
   tableThisWeekStartY = cell_h*6;
   tableNextWeekStartY = cell_h*23;
@@ -79,7 +78,7 @@ void responsiveSketch() {
   }
 }
 
-void drawBottomInfo(){
+void drawBottomInfo() {
   noStroke();
   fill(c_primary);
   textFont(Helvetica, textSize*1.3);
@@ -88,10 +87,9 @@ void drawBottomInfo(){
   fill(c_secondary);
   rect(tableStartX, cell_h*36+cell_h, cell_h, cell_h);
   text("AIR LAB booked", tableStartX+cell_w, cell_h*36+cell_h*1.5);
+  fill(c_text);
   String links = "air@itu.dk | airlab.itu.dk | airlab.itu.dk/booking | facebook.com/airlabitu | instagram.com/air_lab_itu";
   text(links, width/2-textWidth(links)/2, cell_h*39);
-  
-  
 }
 
 int getDayIndex(String _day) {
@@ -127,7 +125,7 @@ int getDayIndex(String _day) {
 
 
 //void drawTimeTable(float tableX, float tableY, String weekString) {
-void drawTimeTable(float headerY, float tableX, float tableY, String weekString) {
+void drawTimeTable(float headerY, float tableX, float tableY, String weekString, int daysOffset) {
   fill(c_primary);
   textAlign(CENTER, TOP);
   textFont(Prime, textSize*3);
@@ -149,10 +147,10 @@ void drawTimeTable(float headerY, float tableX, float tableY, String weekString)
   textAlign(LEFT, CENTER);
   for (int i = 0; i < daysInCalendar; i++) {
 
-    String dayFormatted = getDayInfo(i, "day").substring(0, 3).toLowerCase();
+    String dayFormatted = getDayInfo(i, "day", daysOffset).substring(0, 3).toLowerCase();
     text(dayFormatted, tableX+cell_w/2+eventWidth*i*dayWidth, tableY-cell_h*1.5);
-    String dateFormatted = getDayInfo(i, "date");
-    String monthFormatted = getDayInfo(i, "month");
+    String dateFormatted = getDayInfo(i, "date", daysOffset);
+    String monthFormatted = getDayInfo(i, "month", daysOffset);
     if (dateFormatted.length() < 2) {
       dateFormatted = "0" + dateFormatted;
     }
@@ -201,11 +199,10 @@ void drawGrid() {
 
 
 void getFonts() {
-  
+
   Prime = createFont("Prime-Regular.ttf", 32);
   Helvetica = createFont("Helvetica.ttf", 32);
   RobotoMono =  createFont("RobotoMono-Regular.ttf", 32);
-
 }
 
 
@@ -226,7 +223,7 @@ void keyReleased() {
   if (key == 'g') {
     showGrid = !showGrid;
   }
-  println(getDayInfo(2, "date"));
+  //println(getDayInfo(2, "date"));
 }
 
 
@@ -236,7 +233,7 @@ void loadEventDataThisWeek() {
   //eventsPerDay = new int[daysInCalendar];
   eventsThisWeek.clear();
   println("Event data cleared and loaded");
-  
+
   for (int i = 0; i < openingHoursDataThisWeek.length; i ++) {
     //println(i + ": ", openingHoursData[i]);
 
@@ -266,7 +263,7 @@ void loadEventDataNextWeek() {
   //eventsPerDay = new int[daysInCalendar];
   eventsNextWeek.clear();
   println("Event data cleared and loaded");
-  
+
   for (int i = 0; i < openingHoursDataNextWeek.length; i ++) {
     //println(i + ": ", openingHoursData[i]);
 
@@ -291,10 +288,11 @@ void loadEventDataNextWeek() {
 }
 
 
-String getDayInfo(int dayToGet, String infoToGet) {
+String getDayInfo(int dayToGet, String infoToGet, int daysOffset) {
   String dayData;
   LocalDate startOfWeek = LocalDate.now();
   startOfWeek = startOfWeek.minusDays(startOfWeek.getDayOfWeek().getValue()-1);
+  startOfWeek = startOfWeek.plusDays(daysOffset);
 
   String day = ""+startOfWeek.plusDays(dayToGet).getDayOfWeek();
   String date = ""+startOfWeek.plusDays(dayToGet).getDayOfMonth();
