@@ -50,6 +50,7 @@ class DateGrabber {
   }
 
   public void run(int daysOffset) {
+    println("FN: " + outputFileName);
     int iterator = 0;
     int count = 0;
     icsFile = loadStrings(icsUrl);
@@ -68,9 +69,14 @@ class DateGrabber {
       calendarEventInfo = new String[count*7]; // ### 7 is the number of array fields one event used
       LocalDate startOfWeek = LocalDate.now();
       LocalDate endOfWeek;
+      println("DO: " + daysOffset);
+      println("SW 1: " + startOfWeek.toString());
       startOfWeek = startOfWeek.minusDays(startOfWeek.getDayOfWeek().getValue()-1);
+      println("SW 2: " + startOfWeek.toString());
       startOfWeek = startOfWeek.plusDays(daysOffset);
-      endOfWeek = startOfWeek.plusDays(6+daysOffset);
+      println("SW: 3: " + startOfWeek.toString());
+      endOfWeek = startOfWeek.plusDays(6);
+      println("EW: " + endOfWeek.toString());
 
 
 
