@@ -143,7 +143,7 @@ void drawTimeTable(float headerY, float tableX, float tableY, String weekString,
     //line(tableStartX, tableStartY+i*cell_h, width-cell_w, tableStartY+i*cell_h);
     text(timeMin+i, cell_w+cell_w/2, tableY+i*cell_h);
   }
-
+  //Dobbelttjek her
   textAlign(LEFT, CENTER);
   for (int i = 0; i < daysInCalendar; i++) {
 
@@ -155,7 +155,7 @@ void drawTimeTable(float headerY, float tableX, float tableY, String weekString,
       dateFormatted = "0" + dateFormatted;
     }
     if (monthFormatted.length() < 2) {
-      dateFormatted = "0" + monthFormatted;
+      monthFormatted = "0" + monthFormatted;
     }
     if (daysInCalendar != 14) {
       dateFormatted = dateFormatted + "." + monthFormatted;
