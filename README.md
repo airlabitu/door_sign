@@ -11,7 +11,11 @@ This repository has all the information needed to setup the AIR Lab "Door sign" 
 
 
 # Guide for setting up automation 
-To run a Processing sketch automatically when a Raspberry Pi boots up, you can set up a system service or modify the autostart settings. Here’s how you can do it:
+To run a Processing sketch automatically when a Raspberry Pi boots up, you can set up a system service (option 1) or modify the autostart settings (option 2). Here’s how you can do it:
+
+---
+Both methods should work depending on whether you're using the Raspberry Pi in a headless mode (Option 1) or with a GUI (Option 2).
+---
 
 ## Option 1: Using `systemd` to create a service
 `systemd` is the system and service manager for Linux. You can create a custom service to run your Processing sketch at boot.
@@ -100,5 +104,3 @@ If you're running a GUI on the Raspberry Pi, you can also set up the sketch to r
 Your Processing sketch should now launch automatically after logging into the Raspberry Pi desktop.
 
 ---
-
-Both methods should work depending on whether you're using the Raspberry Pi in a headless mode (Option 1) or with a GUI (Option 2). Let me know if you need further clarification!
