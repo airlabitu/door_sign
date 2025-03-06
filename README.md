@@ -1,3 +1,11 @@
+
+Method found with ChatGPT.
+Method 2 have been tested and is working :-)
+
+
+
+
+
 To run a Processing sketch automatically when a Raspberry Pi boots up, you can set up a system service or modify the autostart settings. Here’s how you can do it:
 
 ### Option 1: Using `systemd` to create a service
