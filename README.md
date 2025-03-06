@@ -15,7 +15,7 @@ To run a Processing sketch automatically when a Raspberry Pi boots up, you can s
 
 ---
 Both methods should work depending on whether you're using the Raspberry Pi in a headless mode (Option 1) or with a GUI (Option 2).
----
+
 
 ## Option 1: Using `systemd` to create a service
 `systemd` is the system and service manager for Linux. You can create a custom service to run your Processing sketch at boot.
