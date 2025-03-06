@@ -8,16 +8,13 @@
 6. Then reboot the Pi, and everything should work.
 
 
-## Methods for automating running a Processing program at boot on a Raspberry Pi
-### Found with ChatGPT.
-NB: Method 1 have not been tested... we used method 2 since we are setting it up on an OS with GUI. See ChatGPT comments.
+## Automating a Processing program at boot on a Raspberry Pi (found with ChatGPT)
+NB: Option 1 have not been tested... we used method 2 since we are setting it up on an OS with GUI. See ChatGPT comment at the bottom.
 
-
-### ChatGPT answer
 
 To run a Processing sketch automatically when a Raspberry Pi boots up, you can set up a system service or modify the autostart settings. Here’s how you can do it:
 
-#### Option 1: Using `systemd` to create a service
+### Option 1: Using `systemd` to create a service
 `systemd` is the system and service manager for Linux. You can create a custom service to run your Processing sketch at boot.
 
 1. **Write the Processing code**: Ensure that your Processing sketch is saved and ready to be executed. For example, save your sketch as `mySketch.pde` and compile it into an executable using Processing IDE.
@@ -75,7 +72,7 @@ To run a Processing sketch automatically when a Raspberry Pi boots up, you can s
 
    Your Processing sketch should now run automatically on boot.
 
-#### Option 2: Using `~/.config/autostart` (GUI method)
+### Option 2: Using `~/.config/autostart` (GUI method)
 If you're running a GUI on the Raspberry Pi, you can also set up the sketch to run automatically by adding it to the autostart folder.
 
 1. **Prepare the executable**: Ensure your compiled Processing sketch is ready and placed in a directory (e.g., `/home/pi/processing-sketch/mySketch-linux-armv7l/`).
