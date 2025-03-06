@@ -1,43 +1,91 @@
-# door_sign
-AIR LAB door sign display
+To run a Processing sketch automatically when a Raspberry Pi boots up, you can set up a system service or modify the autostart settings. Here’s how you can do it:
 
+### Option 1: Using `systemd` to create a service
+`systemd` is the system and service manager for Linux. You can create a custom service to run your Processing sketch at boot.
 
-Install processing by going to the terminal and typing this command:
-- curl https://processing.org/download/install-arm.sh | sudo sh
+1. **Write the Processing code**: Ensure that your Processing sketch is saved and ready to be executed. For example, save your sketch as `mySketch.pde` and compile it into an executable using Processing IDE.
 
-Launch Processing
+2. **Compile the Processing Sketch**: In Processing, you can use the **Export Application** option to compile your sketch into a standalone application. 
 
-Download the project from the AIR LAB GitHub : https://github.com/airlabitu/door_sign
+   - Open the sketch in the Processing IDE.
+   - Go to **Sketch → Export Application**.
+   - Choose the operating system (Linux) and ensure that you get the `.elf` executable.
 
-Save the two folders (door_sign) and (date_grabber) in the Processing home folder: /home/pi/sketchbook
+3. **Create a systemd service**:
 
-Create two empty folders callsed "this_week" and "next_week" under "/Home/pi/Documents"
+   - Open a terminal on the Raspberry Pi.
+   - Create a new service file for your sketch:
+     ```bash
+     sudo nano /etc/systemd/system/run_processing_sketch.service
+     ```
+   
+   - Add the following content to the file, adjusting the paths accordingly:
+     ```ini
+     [Unit]
+     Description=Run Processing Sketch at Boot
+     After=network.target
 
-Setup the autostart of the "door_sign.pde" program by typing the following command in a Terminal window:
-- sudo nano /etc/xdg/lxsession/LXDE-pi/autostart
-- Then adding the following line at the end of the file:
-	- @processing-java --sketch=/home/pi/sketchbook/door_sign --run
+     [Service]
+     ExecStart=/home/pi/processing-sketch/mySketch-linux-armv7l/mySketch
+     WorkingDirectory=/home/pi/processing-sketch/mySketch-linux-armv7l
+     User=pi
+     Group=pi
+     Restart=always
 
-Setting up nightly reboots using 'cron'
-- open terminal
-- open cron: crontab -e
-- enter the following at the end of the document: 59 23 * * * sudo reboot
-	- read more about cron here: raspberrypi.org/documentation/linux/usage/cron.md 
+     [Install]
+     WantedBy=multi-user.target
+     ```
 
-Rotate the PIs screen output to fit a vertical screen
-- Edit the confog.txt file
-	- Open file: sudo nano /boot/config.txt
-	- Add the following line at the bottom: display_rotate=1
-	- Exit and save: first (ctrl+x) then (shift+y)
+   **Explanation of each section**:
+   - `ExecStart`: The path to your compiled Processing sketch.
+   - `WorkingDirectory`: The directory where your compiled sketch is located.
+   - `User` and `Group`: The user and group that the sketch will run under (typically `pi` for Raspberry Pi).
+   - `Restart`: Ensures the sketch restarts if it crashes.
 
-Make the "date_grabber" run headless
-- Open terminal and run the following install
-	- sudo apt-get install xvfb libxrender1 libxtst6 libxi6
-- Read more about it here: https://github.com/processing/processing/wiki/Running-without-a-Display
-- NB: if this install doesn't work the codeline in the "door_sign" code executing the "date_grabber" needs to be altered back to running as normal. See the uncommented line just above the "xvfb-run" command execution, in the "functions.pde" file
+4. **Enable and start the service**:
+   After creating the service file, enable and start the service with the following commands:
+   ```bash
+   sudo systemctl daemon-reload
+   sudo systemctl enable run_processing_sketch.service
+   sudo systemctl start run_processing_sketch.service
+   ```
 
-NB
-If the PI gets turned on by cutting the power it will start to give a prompting dialo box when
-running. Disable this the following way:
-- Open any folder, and go to the menu: edit -> preferences
-- In the general tab check the box "Don't ask options on launch executable file"
+5. **Reboot to test**:
+   Now, reboot your Raspberry Pi:
+   ```bash
+   sudo reboot
+   ```
+
+   Your Processing sketch should now run automatically on boot.
+
+### Option 2: Using `~/.config/autostart` (GUI method)
+If you're running a GUI on the Raspberry Pi, you can also set up the sketch to run automatically by adding it to the autostart folder.
+
+1. **Prepare the executable**: Ensure your compiled Processing sketch is ready and placed in a directory (e.g., `/home/pi/processing-sketch/mySketch-linux-armv7l/`).
+
+2. **Create an autostart entry**:
+   - Open a terminal and run:
+     ```bash
+     mkdir -p ~/.config/autostart
+     nano ~/.config/autostart/processing-sketch.desktop
+     ```
+   - Add the following content to the file:
+     ```ini
+     [Desktop Entry]
+     Name=Processing Sketch
+     Exec=/home/pi/processing-sketch/mySketch-linux-armv7l/mySketch
+     Type=Application
+     X-GNOME-Autostart-enabled=true
+     ```
+
+3. **Reboot**:
+   After saving the file, reboot your Raspberry Pi:
+   ```bash
+   sudo reboot
+   ```
+
+Your Processing sketch should now launch automatically after logging into the Raspberry Pi desktop.
+
+---
+
+Both methods should work depending on whether you're using the Raspberry Pi in a headless mode (Option 1) or with a GUI (Option 2). Let me know if you need further clarification!
