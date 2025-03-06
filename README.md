@@ -1,20 +1,19 @@
 # Setting up the "Door sign" project on a Raspberry Pi
 
+This repository has all the information needed to setup the AIR Lab "Door sign" system on a Raspberry Pi
+
+## Steps to setup the system
+
 1. Start by exporting the Processing sketch in this repository
 2. Move the exported program to the Pi (Desktop will work)
-3. Copy the file "pic.png" and put it just under the exported folder e.g. "linux-aarch64" next to the executable called "door_sign".
 4. Try to manually execute the exported app, to see that it works.
-5. Then use Method 2 of the guide below to setup the Pi to automatically launch it at boot. Remember to edit the file path ;-)
+5. Then use "Option 2" of the guide below to setup the Pi to automatically launch it at boot. Remember to edit the file path ;-)
 6. Then reboot the Pi, and everything should work.
-
-
-## Automating a Processing program at boot on a Raspberry Pi (found with ChatGPT)
-NB: Option 1 have not been tested... we used method 2 since we are setting it up on an OS with GUI. See ChatGPT comment at the bottom.
 
 
 To run a Processing sketch automatically when a Raspberry Pi boots up, you can set up a system service or modify the autostart settings. Here’s how you can do it:
 
-### Option 1: Using `systemd` to create a service
+## Option 1: Using `systemd` to create a service
 `systemd` is the system and service manager for Linux. You can create a custom service to run your Processing sketch at boot.
 
 1. **Write the Processing code**: Ensure that your Processing sketch is saved and ready to be executed. For example, save your sketch as `mySketch.pde` and compile it into an executable using Processing IDE.
