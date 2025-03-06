@@ -13,7 +13,7 @@ This repository has all the information needed to setup the AIR Lab "Door sign" 
 
 To run a Processing sketch automatically when a Raspberry Pi boots up, you can set up a system service or modify the autostart settings. Here’s how you can do it:
 
-## Option 1: Using `systemd` to create a service
+### Option 1: Using `systemd` to create a service
 `systemd` is the system and service manager for Linux. You can create a custom service to run your Processing sketch at boot.
 
 1. **Write the Processing code**: Ensure that your Processing sketch is saved and ready to be executed. For example, save your sketch as `mySketch.pde` and compile it into an executable using Processing IDE.
