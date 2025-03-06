@@ -1,7 +1,16 @@
+# Setting up the "Door sign" project on a Raspberry Pi
 
-# Method found with ChatGPT.
-NB: Method 2 have been tested and is working :-)
+1. Start by exporting the Processing sketch in this repository
+2. Move the exported program to the Pi (Desktop will work)
+3. Copy the file "pic.png" and put it just under the exported folder e.g. "linux-aarch64" next to the executable called "door_sign".
+4. Try to manually execute the exported app, to see that it works.
+5. Then use Method 2 of the guide below to setup the Pi to automatically launch it at boot. Remember to edit the file path ;-)
+6. Then reboot the Pi, and everything should work.
 
+
+# Methods for automating running a Processing program at boot on a Raspberry Pi
+## Found with ChatGPT.
+NB: Method 1 have not been tested... we used method 2 since we are setting it up on an OS with GUI. See ChatGPT comments.
 
 
 ## ChatGPT answer
