@@ -6,10 +6,10 @@ Current version is simply a Raspberry Pi showing a image by automatically runnin
 # Steps to setup the system
 
 1. Start by exporting the Processing sketch in this repository
-2. Move the exported program to the Pi (Desktop will work)
+2. Move the exported program to the Pi (Desktop folder will work)
 4. Try to manually execute the exported app, to see that it works.
-5. Then use "Option 2" of the guide below to setup the Pi to automatically launch it at boot. Remember to edit the file path ;-)
-6. Then reboot the Pi, and everything should work.<br><br>
+5. Use "Option 2" of the guide below to setup the Pi to automatically launch the app at boot. Remember to edit the file path from the guide ;-)
+6. Reboot the Pi. Now the Pi should automatically launch the Processing app.<br><br>
 
 ### Processing export settings
 <br>
