@@ -11,7 +11,8 @@ Current version is simply a Raspberry Pi showing a image by automatically runnin
 5. Then use "Option 2" of the guide below to setup the Pi to automatically launch it at boot. Remember to edit the file path ;-)
 6. Then reboot the Pi, and everything should work.
 <br>
-### Processing export settings:<br><br>
+### Processing export settings
+<br><br>
 <img width="250" alt="Processing export settings" src="https://github.com/user-attachments/assets/8104b094-f707-4717-ab57-3c669802c3c8" />
 
 
