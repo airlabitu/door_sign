@@ -9,7 +9,7 @@ Current version is simply a Raspberry Pi showing a image by automatically runnin
 2. Move the exported program to the Pi (Desktop will work)
 4. Try to manually execute the exported app, to see that it works.
 5. Then use "Option 2" of the guide below to setup the Pi to automatically launch it at boot. Remember to edit the file path ;-)
-6. Then reboot the Pi, and everything should work.<br>
+6. Then reboot the Pi, and everything should work.<br><br>
 
 ### Processing export settings
 <br>
