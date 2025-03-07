@@ -11,6 +11,10 @@ Current version is simply a Raspberry Pi showing a image by automatically runnin
 5. Then use "Option 2" of the guide below to setup the Pi to automatically launch it at boot. Remember to edit the file path ;-)
 6. Then reboot the Pi, and everything should work.
 
+Processing export settings:
+<img width="421" alt="Processing export settings" src="https://github.com/user-attachments/assets/8df82f28-8812-437e-8b69-cdff294c8f3f" />
+
+
 
 # Guide for setting up automation 
 To run a Processing sketch automatically when a Raspberry Pi boots up, you can set up a system service (option 1) or modify the autostart settings (option 2). Here’s how you can do it:
