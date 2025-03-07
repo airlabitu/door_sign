@@ -1,5 +1,7 @@
 
-This repository has all the information needed to setup the AIR Lab "Door sign" system on a Raspberry Pi
+This repository has all the information needed to setup the AIR Lab "Door sign" system on a Raspberry Pi.
+
+Current version is simply a Raspberry Pi showing a image by automatically running an exported Processing sketch at boot.
 
 # Steps to setup the system
 
